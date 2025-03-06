@@ -1,0 +1,102 @@
+﻿<Page x:Class="ExpenseIt.ExpenseItHome"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignHeight="350"
+      d:DesignWidth="500"
+      Title="ExpenseIt - Home">
+
+    <!--
+        В этом файле мы определяем главную страницу приложения.
+        - XmlDataProvider содержит список сотрудников и их расходы.
+        - DataTemplate (nameItemTemplate) определяет способ отображения имён в ListBox.
+        - Grid с четырьмя строками и двумя столбцами гарантирует, что индексы Grid.Row и Grid.Column совпадают с реальностью.
+    -->
+
+    <Page.Resources>
+        <!-- Expense Report Data -->
+        <XmlDataProvider x:Key="ExpenseDataSource" XPath="Expenses">
+            <x:XData>
+                <Expenses xmlns="">
+                    <Person Name="Mike" Department="Legal">
+                        <Expense ExpenseType="Lunch" ExpenseAmount="50" />
+                        <Expense ExpenseType="Transportation" ExpenseAmount="50" />
+                    </Person>
+                    <Person Name="Lisa" Department="Marketing">
+                        <Expense ExpenseType="Document printing" ExpenseAmount="50" />
+                        <Expense ExpenseType="Gift" ExpenseAmount="125" />
+                    </Person>
+                    <Person Name="John" Department="Engineering">
+                        <Expense ExpenseType="Magazine subscription" ExpenseAmount="50" />
+                        <Expense ExpenseType="New machine" ExpenseAmount="600" />
+                        <Expense ExpenseType="Software" ExpenseAmount="500" />
+                    </Person>
+                    <Person Name="Mary" Department="Finance">
+                        <Expense ExpenseType="Dinner" ExpenseAmount="100" />
+                    </Person>
+                </Expenses>
+            </x:XData>
+        </XmlDataProvider>
+
+        <!-- Name item template -->
+        <DataTemplate x:Key="nameItemTemplate">
+            <Label Content="{Binding XPath=@Name}" />
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Margin="10,0,10,10">
+        <!-- Фон в виде изображения -->
+        <Grid.Background>
+            <ImageBrush ImageSource="watermark.png"/>
+        </Grid.Background>
+
+        <!-- Определяем 2 колонки -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="230"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Определяем 4 строки -->
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <!-- индекс 0 -->
+            <RowDefinition Height="Auto"/>
+            <!-- индекс 1 -->
+            <RowDefinition/>
+            <!-- индекс 2 -->
+            <RowDefinition Height="Auto"/>
+            <!-- индекс 3 -->
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок страницы (Row=0, Col=1) -->
+        <Label Grid.Column="1"
+               Style="{StaticResource headerTextStyle}">
+            View Expense Report
+        </Label>
+
+        <!-- Заголовок списка (Row=1, Col=1) -->
+        <Border Grid.Column="1"
+                Grid.Row="1"
+                Style="{StaticResource listHeaderStyle}">
+            <Label Style="{StaticResource listHeaderTextStyle}">Names</Label>
+        </Border>
+
+        <!-- Список сотрудников (Row=2, Col=1) -->
+        <ListBox Name="peopleListBox"
+                 Grid.Column="1"
+                 Grid.Row="2"
+                 ItemsSource="{Binding Source={StaticResource ExpenseDataSource}, XPath=Person}"
+                 ItemTemplate="{StaticResource nameItemTemplate}">
+        </ListBox>
+
+        <!-- Кнопка для просмотра отчёта (Row=3, Col=1) -->
+        <Button Grid.Column="1"
+                Grid.Row="3"
+                Style="{StaticResource buttonStyle}"
+                Click="Button_Click">
+            View
+        </Button>
+    </Grid>
+</Page>
