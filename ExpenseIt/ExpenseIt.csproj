@@ -111,5 +111,8 @@
   <ItemGroup>
     <Resource Include="watermark.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="act.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
