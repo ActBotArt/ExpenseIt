@@ -2,6 +2,20 @@
 
 ExpenseIt — классическое WPF-приложение для управления и отображения отчетов о расходах. Этот проект демонстрирует использование XAML-разметки, привязки данных, навигации между страницами и применения стилей для создания современного корпоративного решения на платформе .NET.
 
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/55795c94-409e-40f0-8f93-af0f046173a5" alt="photo_1" width="300px"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/7bb8059a-c59d-4123-a2a6-7882f92d774b" alt="photo_2" width="300px"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/c1be2fed-4339-44d9-adca-fd2113f9e808" alt="photo_3" width="300px"/>
+    </td>
+  </tr>
+</table>
+
 ## Особенности
 
 - **Гибкий пользовательский интерфейс:** Современный дизайн с использованием Grid-макета, DataGrid для отображения табличных данных и стилизованных элементов управления.
